@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('list handling practice', async ({ page }) => {
   // Login
-  await page.goto('https://automationexercise.com/', { timeout: 60000 })
+  await page.goto('https://automationexercise.com/')
   await page.getByText('Signup / Login').click()
   await page.locator('[data-qa="login-email"]').fill('testsop@gmail.com')
   await page.locator('[data-qa="login-password"]').fill('paroli12')
