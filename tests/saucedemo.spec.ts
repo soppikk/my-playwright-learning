@@ -27,16 +27,34 @@ test('Remove item from the cart', async ({ page }) => {
    await expect(
   page.locator(".shopping_cart_badge"),
   "Cart badge should not be visible after removing product"
-).not.toBeVisible();
+).not.toBeVisible(); })
+
+// Bonus challenges
+
+test('Add 3 items to the cart', async ({ page }) => {
+    await page.locator('.btn_inventory').nth(0).click() //item1
+    await page.locator('.btn_inventory').nth(1).click() //item2
+    await page.locator('.btn_inventory').nth(2).click() //item3
+    await expect(page.locator(".shopping_cart_badge"),
+        "Cart badge should show 3 after adding products"
+        ).toHaveText("3");
+    await page.locator('.btn_inventory').nth(2).click() //remove one item
+    await expect(page.locator(".shopping_cart_badge"),
+        "Cart badge should show 2 after removing one product"
+    ).toHaveText("2");
+  })
+  })
+
+
+// test('Sort items and make sure its correctly sorted', async ({ page }) => {
 
 
 
-})
+// }) 
 
 
-})
 
-  test.describe('Negative Path', () => {
+test.describe('Negative Path', () => {
     test('should show error with wrong password', async ({ page }) => {
       await page.goto('https://www.saucedemo.com/')
       await page.getByPlaceholder('Username').fill('standard_user')
